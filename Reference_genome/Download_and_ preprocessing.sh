@@ -1,7 +1,7 @@
 ### This file contains codes to generate comprehensive lncRNA annotation for alignment, and modified from Singletrome.
 
 # Define input/output directories and parameters
-genomesBase=‍‍‍‍~/single/references/
+genomesBase=‍‍‍‍~/references
 source=$genomesBase/reference_sources
 mkdir $source
 cd $source
