@@ -31,10 +31,12 @@ cat "$fasta_in" \
     | sed -E 's/^>MT />chrM /' \
     > "$fasta_modified"
 gtf_modified="$source/$(basename "$gtf_in").modified"
-| sed -E 's/gene_id "'"$ID"'";/gene_id "\1"; gene_version "\3";/' \
-| sed -E 's/transcript_id "'"$ID"'";/transcript_id "\1"; transcript_version "\3";/' \
-| sed -E 's/exon_id "'"$ID"'";/exon_id "\1"; exon_version "\3";/' \
-> "$gtf_modified"
+ID="(ENS(MUS)?[GTE][0-9]+)\.([0-9]+)"
+cat "$gtf_in" \
+    | sed -E 's/gene_id "'"$ID"'";/gene_id "\1"; gene_version "\3";/' \
+    | sed -E 's/transcript_id "'"$ID"'";/transcript_id "\1"; transcript_version "\3";/' \
+    | sed -E 's/exon_id "'"$ID"'";/exon_id "\1"; exon_version "\3";/' \
+    > "$gtf_modified"
 
 # Define string patterns for GTF tags
 BIOTYPE_PATTERN="(protein_coding)"
